@@ -1,6 +1,6 @@
 {
   "name": "react-on-visible",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React component that applies a css class to the element when it becomes visible",
   "main": "build/index.js",
   "jsnext:main": "src/index.js",
@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/dazld/react-on-visible#readme",
   "dependencies": {
-    "classnames": "latest",
-    "react": "latest"
+    "classnames": "^2.2.5",
+    "react": "^15.3.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
