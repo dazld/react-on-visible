@@ -1,0 +1,23 @@
+{
+  "name": "react-on-visible",
+  "version": "1.0.0",
+  "description": "React component that applies a css class to the element when it becomes visible",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dazld/react-on-visible.git"
+  },
+  "keywords": [
+    "react",
+    "on-visible"
+  ],
+  "author": "Dan Peddle <dan@flarework.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dazld/react-on-visible/issues"
+  },
+  "homepage": "https://github.com/dazld/react-on-visible#readme"
+}
