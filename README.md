@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/react-on-visible.svg)](https://badge.fury.io/js/react-on-visible)
 # React OnVisible component
 
 ## Work in progress!
