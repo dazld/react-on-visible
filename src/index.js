@@ -21,7 +21,7 @@ class OnVisible extends Component {
     }
     onScroll() {
         const pos = window.scrollY + window.innerHeight;
-        const box = this.refs.holder.getBoundingClientRect();
+        const box = this.holder.getBoundingClientRect();
         const top = box.top + (box.height / 2) + (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
         const isVisible = top < pos;
         if (!this.state.visible && isVisible) {
@@ -40,7 +40,7 @@ class OnVisible extends Component {
         return (
             <div
                 className={classes}
-                ref="holder">
+                ref={(el) => { this.holder = el; }}>
                 {this.props.children}
             </div>
         );
