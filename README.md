@@ -11,6 +11,8 @@ The scope of this component is intentionally quite limited. A future version may
 
 ## Example
 
+Live example: https://dazld.github.io/react-on-visible/demo/
+
 ```js
 
 import React from 'react';
