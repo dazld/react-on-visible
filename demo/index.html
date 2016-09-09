@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>On Visible demo</title>
+        <style media="screen">
+            html {
+                background: #333;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            #root {
+                width: 80vw;
+                margin: 6rem auto;
+            }
+            #navbar {
+                height: 4rem;
+                line-height: 4rem;
+                background: #5a5a5a;
+                position: fixed;
+                padding: 0 2rem;
+                color: #fafafa;
+                font-family: Monaco, consolas, monospace;
+                font-size: 1rem;
+                z-index: 2;
+                left: 0;
+                right: 0;
+                top: 0;
+            }
+            #navbar a {
+                float: right;
+                color: #fafafa;
+            }
+            .box {
+                width: calc(33% - 2rem);
+                height: 33vw;
+                margin: 1rem;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .box div {
+                opacity: 0;
+                height: 100%;
+                background: red;
+                transition: all 700ms ease-in-out;
+                transform: translate3d(0,50px,0) scale(0.5);
+                position: relative;
+            }
+            .box.visible div {
+                opacity: 1;
+                display: block;
+                transform: translate3d(0,0,0);
+            }
+            .box.visible div:after {
+                content: attr(data-idx);
+                font-family: Monaco, consolas, monospace;
+                font-size: 2vw;
+                color: white;
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.7);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%,-50%,0);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <span>React OnVisible demo</span>
+            <a href="https://github.com/dazld/react-on-visible">Github</a>
+        </div>
+        <div id="root"></div>
+        <script src="bundle.js" async></script>
+    </body>
+</html>

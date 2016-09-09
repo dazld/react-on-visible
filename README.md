@@ -1,8 +1,6 @@
 [![npm version](https://badge.fury.io/js/react-on-visible.svg)](https://badge.fury.io/js/react-on-visible)
 # React OnVisible component
 
-## Work in progress!
-
 This is a higher order react component that applies the css class `visible` to the container when the element becomes more than 50% visible in the browser viewport.
 
 It only attaches to browser events on the client, so is also safe to use for server rendering.

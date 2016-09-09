@@ -1,6 +1,7 @@
+/* global window, document */
 import React, { PropTypes, Component } from 'react';
-import debounce from './lib/debounce';
 import cx from 'classnames';
+import debounce from './lib/debounce';
 
 class OnVisible extends Component {
     constructor() {
@@ -15,41 +16,58 @@ class OnVisible extends Component {
     componentDidMount() {
         this.onScroll();
         window.addEventListener('scroll', this.onScroll);
+        window.addEventListener('resize', this.onScroll);
     }
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll);
+        this.stopListening();
     }
     onScroll() {
-        const pos = window.scrollY + window.innerHeight;
+        const pos = window.pageYOffset + window.innerHeight;
+        const visbleTriggerRatio = (this.props.percent && this.props.percent / 100) || 0.5;
         const box = this.holder.getBoundingClientRect();
-        const top = box.top + (box.height / 2) + (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
+
+        const pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
+        const docTop = document.documentElement.clientTop || 0;
+
+        const top = box.top + (box.height * visbleTriggerRatio) + (pageYOffset - docTop);
         const isVisible = top < pos;
-        if (!this.state.visible && isVisible) {
+
+        if (isVisible) {
             this.setState({
-                visible: isVisible,
+                visible: true,
                 top
             });
+            this.stopListening();
         }
+    }
+    stopListening() {
+        window.removeEventListener('scroll', this.onScroll);
+        window.removeEventListener('resize', this.onScroll);
     }
     render() {
         const { visible } = this.state;
         const classes = cx(this.props.className, {
-            visible
+            [this.props.visibleClassName || 'visible']: visible
         });
 
         return (
-            <div
-                className={classes}
-                ref={(el) => { this.holder = el; }}>
-                {this.props.children}
-            </div>
+          <div
+            style={this.props.style}
+            className={classes}
+            ref={el => { this.holder = el; }}
+          >
+            {this.props.children}
+          </div>
         );
     }
 }
 
 OnVisible.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node
+    style: PropTypes.object,
+    visibleClassName: PropTypes.string,
+    children: PropTypes.node,
+    percent: PropTypes.number
 };
 
 export default OnVisible;
