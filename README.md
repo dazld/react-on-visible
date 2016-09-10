@@ -32,4 +32,4 @@ export default function someComponent(props) {
 
 ```
 
-A further example is available in the `demos` folder of this project.
+A further example is available in the `demo` folder of this project.
