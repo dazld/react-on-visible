@@ -4,8 +4,8 @@ import cx from 'classnames';
 import debounce from './lib/debounce';
 
 class OnVisible extends Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.onScroll = debounce(this.onScroll.bind(this), 10);
         this.state = {
             visible: false,
@@ -36,6 +36,8 @@ class OnVisible extends Component {
             this.setState({
                 visible: true,
                 top
+            }, function() {
+                if (this.props.onChange) this.props.onChange(this.state.visible);
             });
             this.stopListening();
         }
@@ -67,7 +69,8 @@ OnVisible.propTypes = {
     style: PropTypes.object,
     visibleClassName: PropTypes.string,
     children: PropTypes.node,
-    percent: PropTypes.number
+    percent: PropTypes.number,
+    onChange: PropTypes.func,
 };
 
 export default OnVisible;

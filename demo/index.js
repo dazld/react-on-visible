@@ -7,8 +7,8 @@ const NUM_ITEMS = 360;
 const root = document.querySelector('#root');
 
 class Colors extends Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         const colors = new Array(NUM_ITEMS).fill('').map((i, idx) => {
             return {
                 bg: `hsl(${(idx / NUM_ITEMS) * 360},100%,50%)`
@@ -17,13 +17,15 @@ class Colors extends Component {
         this.state = {
             colors
         };
+
     }
     renderItem(item, idx) {
         return (
             <OnVisible
                 className="box"
                 percent={10}
-                key={idx}>
+                key={idx}
+                onChange={(state) => { console.log(state); }}>
                 <div data-idx={`box: ${idx}`} style={{
                     backgroundColor: item.bg,
                     transitionDelay: `${idx % 3 * 100}ms`
