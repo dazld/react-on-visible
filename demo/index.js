@@ -7,8 +7,8 @@ const NUM_ITEMS = 360;
 const root = document.querySelector('#root');
 
 class Colors extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super(...arguments);
         const colors = new Array(NUM_ITEMS).fill('').map((i, idx) => {
             return {
                 bg: `hsl(${(idx / NUM_ITEMS) * 360},100%,50%)`
@@ -17,7 +17,6 @@ class Colors extends Component {
         this.state = {
             colors
         };
-
     }
     renderItem(item, idx) {
         return (
