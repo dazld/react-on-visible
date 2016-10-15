@@ -24,7 +24,7 @@ class Colors extends Component {
                 className="box"
                 percent={10}
                 key={idx}
-                onChange={(state) => { console.log(state); }}>
+                onChange={(state) => { console.log(`idx ${idx} is now visible: ${state}`); }}>
                 <div data-idx={`box: ${idx}`} style={{
                     backgroundColor: item.bg,
                     transitionDelay: `${idx % 3 * 100}ms`

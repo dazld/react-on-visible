@@ -9,7 +9,7 @@ Live example: https://dazld.github.io/react-on-visible/demo/
 
 This is a higher order react component that applies the css class `visible` to the container when the element becomes more than 50% visible in the browser viewport.
 
-The user can override the percentage via the `percent={50}` prop (50% in this case), or the class used when becoming visible via the `visibleClassName="show"` (show in this case).
+The user can override the percentage via the `percent={50}` prop (50% in this case), or the class used when becoming visible via the `visibleClassName="show"` (show in this case). If a `onChange` callback prop is provided, this will be invoked once the element becomes visible too.
 
 It only attaches to browser events on the client, so is also safe to use for server rendering.
 
@@ -33,3 +33,9 @@ export default function someComponent(props) {
 ```
 
 A further example is available in the `demo` folder of this project.
+
+## Changelog
+
+### 1.0.3
+
+- added `onChange` callback prop option (thanks @rdjpalmer)
