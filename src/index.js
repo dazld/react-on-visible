@@ -31,15 +31,21 @@ class OnVisible extends Component {
 
         const top = box.top + (box.height * visbleTriggerRatio) + (pageYOffset - docTop);
         const isVisible = top < pos;
-
+        const end = () => {
+            this.props.onChange(this.state.visible);
+        };
         if (isVisible) {
             this.setState({
                 visible: true,
                 top
-            }, () => {
-                this.props.onChange(this.state.visible);
-            });
-            this.stopListening();
+            }, end);
+            if (!this.props.bounce) {
+                this.stopListening();
+            }
+        } else if (this.state.visible) {
+            this.setState({
+                visible: false
+            }, end);
         }
     }
     stopListening() {
@@ -65,7 +71,8 @@ class OnVisible extends Component {
 }
 
 OnVisible.defaultProps = {
-    onChange: () => {}
+    onChange: () => {},
+    bounce: false
 };
 
 OnVisible.propTypes = {
@@ -75,6 +82,13 @@ OnVisible.propTypes = {
     children: PropTypes.node,
     percent: PropTypes.number,
     onChange: PropTypes.func,
+    bounce: PropTypes.bool
 };
 
 export default OnVisible;
+
+export function setDefaultProps(props) {
+    Object.keys(props).forEach(k => {
+        OnVisible.defaultProps[k] = props[k];
+    });
+}
