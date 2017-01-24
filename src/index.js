@@ -16,13 +16,20 @@ class OnVisible extends Component {
     }
     componentDidMount() {
         this.onScroll();
-        window.addEventListener('scroll', this.onScroll);
+        const container = this.getContainer();
+        container.addEventListener('scroll', this.onScroll);
         window.addEventListener('resize', this.onScroll);
     }
     componentWillUnmount() {
         this.stopListening();
     }
+    getContainer(){
+        return this.props.container || window;
+    }
     onScroll() {
+
+        const containerIsWindow = this.props.container === window;
+      
         const pos = window.pageYOffset + window.innerHeight;
         const visbleTriggerRatio = (this.props.percent && this.props.percent / 100) || 0.5;
         const box = this.holder.getBoundingClientRect();
@@ -50,7 +57,8 @@ class OnVisible extends Component {
         }
     }
     stopListening() {
-        window.removeEventListener('scroll', this.onScroll);
+        const container = this.getContainer();
+        container.removeEventListener('scroll', this.onScroll);
         window.removeEventListener('resize', this.onScroll);
     }
     render() {
