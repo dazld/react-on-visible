@@ -6,7 +6,7 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel src --out-dir build",
+    "compile": "node ./build.js",
     "demo": "browserify demo/index.js -o demo/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "prepublish": "npm run compile"
   },
