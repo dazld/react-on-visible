@@ -16,7 +16,7 @@ class OnVisible extends Component {
     componentDidMount() {
         this.onScroll();
         const container = this.getContainer();
-        container.addEventListener('scroll', this.onScroll);
+        container.addEventListener(this.props.event || 'scroll', this.onScroll);
         window.addEventListener('resize', this.onScroll);
     }
     componentWillUnmount() {
