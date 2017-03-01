@@ -24,24 +24,38 @@ class OnVisible extends Component {
         this.stopListening();
     }
     getContainer(){
-        return this.props.container || window;
+        return this.props.container || this._findScrollableAncestor();
     }
     onScroll() {
 
         const containerIsWindow = this.props.container === window;
-      
-        const pos = window.pageYOffset + window.innerHeight;
+
+        const horizontal = this.props.horizontal;
+
+        const pos = horizontal ?
+          window.pageXOffset + window.innerWidth :
+          window.pageYOffset + window.innerHeight;
+
         const visbleTriggerRatio = (this.props.percent && this.props.percent / 100) || 0.5;
+
         const box = this.holder.getBoundingClientRect();
 
         const pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
-        const docTop = document.documentElement.clientTop || 0;
+        const pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
 
-        const top = box.top + (box.height * visbleTriggerRatio) + (pageYOffset - docTop);
+        const docTop = document.documentElement.clientTop || 0;
+        const docLeft = document.documentElement.clientLeft || 0;
+
+        const top = horizontal ?
+          box.left + (box.width * visbleTriggerRatio) + (pageXOffset - docLeft) :
+          box.top + (box.height * visbleTriggerRatio) + (pageYOffset - docTop);
+
         const isVisible = top < pos;
+
         const end = () => {
             this.props.onChange(this.state.visible);
         };
+
         if (isVisible) {
             this.setState({
                 visible: true,
@@ -60,6 +74,37 @@ class OnVisible extends Component {
         const container = this.getContainer();
         container.removeEventListener('scroll', this.onScroll);
         window.removeEventListener('resize', this.onScroll);
+    }
+    _findScrollableAncestor() {
+      let node = this.holder;
+
+      while (node.parentNode) {
+        node = node.parentNode;
+
+        if (node === document) {
+          // This particular node does not have a computed style.
+          continue;
+        }
+
+        if (node === document.documentElement) {
+          // This particular node does not have a scroll bar, it uses the window.
+          continue;
+        }
+
+        const style = window.getComputedStyle(node);
+        const overflowDirec = this.props.horizontal ?
+          style.getPropertyValue('overflow-x') :
+          style.getPropertyValue('overflow-y');
+        const overflow = overflowDirec || style.getPropertyValue('overflow');
+
+        if (overflow === 'auto' || overflow === 'scroll') {
+          return node;
+        }
+      }
+
+      // A scrollable ancestor element was not found, which means that we need to
+      // do stuff on window.
+      return window;
     }
     render() {
         const { visible } = this.state;
@@ -88,6 +133,8 @@ OnVisible.propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
     visibleClassName: PropTypes.string,
+    horizontal: PropTypes.bool,
+    event: PropTypes.string,
     children: PropTypes.node,
     percent: PropTypes.number,
     onChange: PropTypes.func,
