@@ -26,7 +26,8 @@
     "homepage": "https://github.com/dazld/react-on-visible#readme",
     "dependencies": {
         "classnames": "^2.2.5",
-        "react": "^15.3.1"
+        "react": "^15.3.1",
+        "prop-types": "^15.5.10"
     },
     "devDependencies": {
         "babel-cli": "^6.14.0",
