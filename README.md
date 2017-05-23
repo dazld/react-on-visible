@@ -68,6 +68,12 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.1.1
+
+- added `react-props` package instead of using them directly from react (thanks @renoiser )
+
+
+
 ### 1.1.0
 
 - Added `bounce` prop and function to set default props.
