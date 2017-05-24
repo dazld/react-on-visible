@@ -1,6 +1,6 @@
 /* global window, document */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import debounce from './lib/debounce';
 
@@ -56,7 +56,8 @@ class OnVisible extends Component {
     render() {
         const { visible } = this.state;
         const classes = cx(this.props.className, {
-            [this.props.visibleClassName || 'visible']: visible
+            [this.props.visibleClassName || 'visible']: visible,
+            [this.props.invisibleClassName || 'invisible']: !visible
         });
 
         return (
@@ -80,6 +81,7 @@ OnVisible.propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
     visibleClassName: PropTypes.string,
+    invisibleClassName: PropTypes.string,
     children: PropTypes.node,
     percent: PropTypes.number,
     onChange: PropTypes.func,
