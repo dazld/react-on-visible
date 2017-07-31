@@ -1,12 +1,12 @@
 {
   "name": "react-on-visible",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "React component that applies a css class to the element when it becomes visible",
   "main": "build/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "node ./build.js",
+    "compile": "babel src --out-dir build",
     "demo": "browserify demo/index.js -o demo/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "prepublish": "npm run compile"
   },
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/dazld/react-on-visible#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
     "react": "^15.3.1"
   },
   "devDependencies": {
