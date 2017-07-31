@@ -1,7 +1,7 @@
 /* global document, window */
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import OnVisible, { setDefaultProps } from '../src/index.js';
+import OnVisible, {setDefaultProps} from '../src/index.js';
 
 const NUM_ITEMS = 360;
 const root = document.querySelector('#root');
@@ -32,22 +32,16 @@ class Colors extends Component {
         };
     }
     setupHorizontalScroll(el){
-        if (el) {
-
-        } else {
-
-        }
         this.setState({
             horizontalElement: el
         });
     }
-    renderItem(container, item, idx) {
-
+    renderItem(isHorizontal = true, container, item, idx) {
         return (
             <OnVisible
-                container={container}
                 className="box"
                 percent={10}
+                horizontal={isHorizontal}
             >
                 <div data-idx={`box: ${idx}`} style={{
                     backgroundColor: item.bg,
@@ -57,16 +51,15 @@ class Colors extends Component {
         );
     }
     render() {
-
         const horizontalElement = this.state.horizontalElement;
         const canRenderHorizontals = !!horizontalElement;
 
         return (
             <div className="colors">
                 <div className="scrollable" ref={this.setupHorizontalScroll}>
-                    {canRenderHorizontals && this.state.horizColors.map(this.renderItem.bind(this, horizontalElement))}
+                    {canRenderHorizontals && this.state.horizColors.map(this.renderItem.bind(this, true, horizontalElement))}
                 </div>
-                {false && this.state.colors.map(this.renderItem.bind(this, window))}
+                {this.state.colors.map(this.renderItem.bind(this, false, window))}
             </div>
         );
     }

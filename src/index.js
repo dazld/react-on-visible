@@ -17,6 +17,7 @@ class OnVisible extends Component {
     componentDidMount() {
         this.onScroll();
         const container = this.getContainer();
+        this.container = container;
         container.addEventListener(this.props.event || 'scroll', this.onScroll);
         window.addEventListener('resize', this.onScroll);
     }
@@ -28,7 +29,7 @@ class OnVisible extends Component {
     }
     onScroll() {
 
-        const containerIsWindow = this.props.container === window;
+        const containerIsWindow = this.container === window;
 
         const horizontal = this.props.horizontal;
 
