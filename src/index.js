@@ -63,7 +63,7 @@ class OnVisible extends Component {
           <div
               style={this.props.style}
               className={classes}
-              ref={el => { this.holder = el; }}
+              ref={el => { this.holder = el || this.holder; }}
           >
             {this.props.children}
           </div>
