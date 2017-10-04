@@ -68,6 +68,10 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.2.0
+
+- include a fix for `this.holder` being null in some situations #12
+
 ### 1.1.1
 
 - added `react-props` package instead of using them directly from react (thanks @renoiser )
