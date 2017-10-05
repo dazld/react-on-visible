@@ -1,6 +1,6 @@
 {
     "name": "react-on-visible",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "description": "React component that applies a css class to the element when it becomes visible",
     "main": "build/index.js",
     "jsnext:main": "src/index.js",
