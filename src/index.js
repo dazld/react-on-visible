@@ -2,12 +2,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
 import cx from 'classnames';
-import debounce from './lib/debounce';
+import { bindRaf } from "./lib/bindRaf";
 
 class OnVisible extends Component {
     constructor() {
         super(...arguments);
-        this.onScroll = debounce(this.onScroll.bind(this), 10);
+        this.onScroll = bindRaf(this.onScroll.bind(this));
         this.state = {
             visible: false,
             bottom: 0,
