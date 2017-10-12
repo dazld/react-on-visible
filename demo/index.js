@@ -10,19 +10,20 @@ setDefaultProps({
     bounce: true
 });
 
-const renderItem = (deleteCallback) => (item, idx) => {
+const renderItem = (deleteCallback) => (item) => {
+	const itemToRemove = Math.min(item.id + 6, NUM_ITEMS);
 	return (
 		<OnVisible
 			className="box"
 			percent={10}
-			key={idx}
+			key={item.id}
 		>
-			<div data-idx={`box: ${idx}`}
+			<div data-idx={`box: ${item.id}, click to cancel ${itemToRemove}`}
 				style={{
 					backgroundColor: item.bg,
-					transitionDelay: `${idx % 3 * 100}ms`
+					transitionDelay: `${item.id % 3 * 100}ms`
 				}}
-			 	onClick={deleteCallback(item.id)}
+			 	onClick={() => deleteCallback(itemToRemove)}
 			/>
 		</OnVisible>
 	);
@@ -45,8 +46,9 @@ class Colors extends Component {
     }
 	deleteColor(colorId) {
     	const { colors } = this.state;
-    	const withoutColorId = colors.filter(item => item.id !== colorId);
-    	// this.setState({colors: withoutColorId});
+		console.log('deleting now: ', colorId);
+		const withoutColorId = colors.filter(item => item.id !== colorId);
+		this.setState({colors: withoutColorId});
 	}
     render() {
         return (

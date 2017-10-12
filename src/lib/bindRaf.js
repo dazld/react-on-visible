@@ -1,5 +1,3 @@
-import { protomix } from "./protomix";
-
 export const bindRaf = (fn) => {
 	let isRunning = null;
 	let self = null;
@@ -11,6 +9,9 @@ export const bindRaf = (fn) => {
 		if (!cancellationToken) {
 			fn.apply(self, args);
 		}
+		// else {
+		// 	console.log('yay i was deletd!!!');
+		// }
 	};
 
 	const callbackGenerator = () => {
@@ -24,13 +25,14 @@ export const bindRaf = (fn) => {
 
 		isRunning = true;
 		requestAnimationFrame(run);
+		// setTimeout(run, 5000);
 	};
 
 	const cancelCallback = () => {
 		cancellationToken = true;
-	}
+	};
 
-	return protomix(callbackGenerator, {
-		cancel: cancelCallback,
-	})
+	callbackGenerator.cancel = cancelCallback;
+
+	return callbackGenerator;
 };
