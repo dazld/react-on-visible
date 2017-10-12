@@ -10,12 +10,31 @@ setDefaultProps({
     bounce: true
 });
 
+const renderItem = (deleteCallback) => (item, idx) => {
+	return (
+		<OnVisible
+			className="box"
+			percent={10}
+			key={idx}
+		>
+			<div data-idx={`box: ${idx}`}
+				style={{
+					backgroundColor: item.bg,
+					transitionDelay: `${idx % 3 * 100}ms`
+				}}
+			 	onClick={deleteCallback(item.id)}
+			/>
+		</OnVisible>
+	);
+}
+
 class Colors extends Component {
     constructor() {
         super(...arguments);
-        this.renderItem = this.renderItem.bind(this);
+        this.deleteColor = this.deleteColor.bind(this);
         const colors = new Array(NUM_ITEMS).fill('').map((i, idx) => {
             return {
+            	id: idx,
                 bg: `hsl(${(idx / NUM_ITEMS) * 360},100%,50%)`
             };
         });
@@ -24,24 +43,15 @@ class Colors extends Component {
             count: 0
         };
     }
-    renderItem(item, idx) {
-        return (
-            <OnVisible
-                className="box"
-                percent={10}
-                key={idx}
-            >
-                <div data-idx={`box: ${idx}`} style={{
-                    backgroundColor: item.bg,
-                    transitionDelay: `${idx % 3 * 100}ms`
-                }} />
-            </OnVisible>
-        );
-    }
+	deleteColor(colorId) {
+    	const { colors } = this.state;
+    	const withoutColorId = colors.filter(item => item.id !== colorId);
+    	// this.setState({colors: withoutColorId});
+	}
     render() {
         return (
             <div className="colors">
-                {this.state.colors.map(this.renderItem)}
+                {this.state.colors.map(renderItem(this.deleteColor))}
             </div>
         );
     }

@@ -52,6 +52,7 @@ class OnVisible extends Component {
     stopListening() {
         window.removeEventListener('scroll', this.onScroll);
         window.removeEventListener('resize', this.onScroll);
+        this.onScroll.cancel();
     }
     render() {
         const { visible } = this.state;
@@ -63,7 +64,7 @@ class OnVisible extends Component {
           <div
               style={this.props.style}
               className={classes}
-              ref={el => { this.holder = el || this.holder; }}
+              ref={el => { this.holder = el; }}
           >
             {this.props.children}
           </div>

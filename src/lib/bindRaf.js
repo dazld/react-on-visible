@@ -1,16 +1,22 @@
+import { protomix } from "./protomix";
+
 export const bindRaf = (fn) => {
 	let isRunning = null;
 	let self = null;
 	let args = null;
+	let cancellationToken = null;
 
 	const run = () => {
 		isRunning = false;
-		fn.apply(self, args);
+		if (!cancellationToken) {
+			fn.apply(self, args);
+		}
 	};
 
-	return () => {
+	const callbackGenerator = () => {
 		self = this;
 		args = arguments;
+		cancellationToken = false;
 
 		if (isRunning) {
 			return;
@@ -19,4 +25,12 @@ export const bindRaf = (fn) => {
 		isRunning = true;
 		requestAnimationFrame(run);
 	};
+
+	const cancelCallback = () => {
+		cancellationToken = true;
+	}
+
+	return protomix(callbackGenerator, {
+		cancel: cancelCallback,
+	})
 };
