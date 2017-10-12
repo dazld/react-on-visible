@@ -2,3 +2,9 @@ node_modules
 build
 npm-debug.log
 bundle.js
+
+# ide folders
+.idea
+
+# for now removing package-lock as it's not my decision to include
+package-lock.json
