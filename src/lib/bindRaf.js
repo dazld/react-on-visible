@@ -2,7 +2,7 @@ export const bindRaf = (fn) => {
 	let isRunning = null;
 	let self = null;
 	let args = null;
-	let cancellationToken = null;
+	let cancellationToken = false;
 
 	const run = () => {
 		isRunning = false;
@@ -17,7 +17,6 @@ export const bindRaf = (fn) => {
 	const callbackGenerator = () => {
 		self = this;
 		args = arguments;
-		cancellationToken = false;
 
 		if (isRunning) {
 			return;
