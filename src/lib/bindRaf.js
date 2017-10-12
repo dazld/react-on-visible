@@ -1,15 +1,15 @@
 export const bindRaf = (fn) => {
 	let isRunning = null;
-	let that = null;
+	let self = null;
 	let args = null;
 
 	const run = () => {
 		isRunning = false;
-		fn.apply(that, args);
+		fn.apply(self, args);
 	};
 
 	return () => {
-		that = this;
+		self = this;
 		args = arguments;
 
 		if (isRunning) {
