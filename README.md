@@ -68,6 +68,12 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.3.0
+
+- support react 16+ (thanks @schwers - https://github.com/dazld/react-on-visible/pull/17)
+- change scheduler to use requestAnimationFrame instead of debounce (thanks @falconmick - https://github.com/dazld/react-on-visible/pull/14)
+- tweak dependencies, move react to peer deps
+
 ### 1.2.0
 
 - include a fix for `this.holder` being null in some situations #12
