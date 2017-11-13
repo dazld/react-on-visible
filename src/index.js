@@ -36,17 +36,17 @@ class OnVisible extends Component {
             this.props.onChange(this.state.visible);
         };
         if (isVisible) {
-            this.setState({
+            this.setState( () => ({
                 visible: true,
                 top
-            }, end);
+            }), end);
             if (!this.props.bounce) {
                 this.stopListening();
             }
         } else if (this.state.visible) {
-            this.setState({
+            this.setState(() => ({
                 visible: false
-            }, end);
+            }), end);
         }
     }
     stopListening() {
