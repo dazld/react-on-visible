@@ -68,6 +68,10 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.4.0
+
+- Added an `index.d.ts` file for typescript users (thanks @KromDaniel)
+
 ### 1.3.0
 
 - support react 16+ (thanks @schwers - https://github.com/dazld/react-on-visible/pull/17)
