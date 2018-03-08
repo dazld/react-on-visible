@@ -60,23 +60,22 @@ class OnVisible extends Component {
             [this.props.visibleClassName || 'visible']: visible
         });
 
-        return (
-            <div
-                style={this.props.style}
-                className={classes}
-                ref={(el) => {
-                    this.holder = el || this.holder;
-                }}
-            >
-                {this.props.children}
-            </div>
-        );
+        const invokingProps = {
+            style: this.props.style,
+            className: classes,
+            ref: (el) => {
+                this.holder = el || this.holder;
+            }
+        };
+
+        return React.createElement(this.props.wrappingElement, invokingProps, this.props.children);
     }
 }
 
 OnVisible.defaultProps = {
     onChange: () => {},
-    bounce: false
+    bounce: false,
+    wrappingElement: 'div'
 };
 
 OnVisible.propTypes = {
@@ -86,13 +85,14 @@ OnVisible.propTypes = {
     children: PropTypes.node,
     percent: PropTypes.number,
     onChange: PropTypes.func,
-    bounce: PropTypes.bool
+    bounce: PropTypes.bool,
+    wrappingElement: PropTypes.string
 };
 
 export default OnVisible;
 
 export function setDefaultProps(props) {
-    Object.keys(props).forEach((k) => {
-        OnVisible.defaultProps[k] = props[k];
+    Object.keys(props).forEach((key) => {
+        OnVisible.defaultProps[key] = props[key];
     });
 }
