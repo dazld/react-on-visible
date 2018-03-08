@@ -1,16 +1,14 @@
 export const bindRaf = (fn) => {
     let isRunning = null;
-    let self = null;
     let args = null;
 
     const run = () => {
         isRunning = false;
-        fn.apply(self, args);
+        fn(...args);
     };
 
-    return () => {
-        self = this;
-        args = arguments;
+    return function (...invokingArguments) {
+        args = invokingArguments;
 
         if (isRunning) {
             return;

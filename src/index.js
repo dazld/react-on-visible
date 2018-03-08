@@ -1,8 +1,8 @@
 /* global window, document */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import {bindRaf} from './lib/bindRaf';
+import cx from 'classnames';
 
 class OnVisible extends Component {
     constructor(...args) {
@@ -73,7 +73,7 @@ class OnVisible extends Component {
 }
 
 OnVisible.defaultProps = {
-    onChange: () => {},
+    onChange: () => {}, // eslint-disable-line no-empty-function
     bounce: false,
     wrappingElement: 'div'
 };
