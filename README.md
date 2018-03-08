@@ -73,6 +73,10 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.5.0
+
+- Added an option to configure the wrappingElement, instead of using `div` always (thanks @TomiTakussaari - https://github.com/dazld/react-on-visible/issues/23)
+
 ### 1.4.0
 
 - Added an `index.d.ts` file for typescript users (thanks @KromDaniel)
