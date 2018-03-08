@@ -1,22 +1,20 @@
 export const bindRaf = (fn) => {
-	let isRunning = null;
-	let self = null;
-	let args = null;
+    let isRunning = null;
+    let args = null;
 
-	const run = () => {
-		isRunning = false;
-		fn.apply(self, args);
-	};
+    const run = () => {
+        isRunning = false;
+        fn(...args);
+    };
 
-	return () => {
-		self = this;
-		args = arguments;
+    return function (...invokingArguments) {
+        args = invokingArguments;
 
-		if (isRunning) {
-			return;
-		}
+        if (isRunning) {
+            return;
+        }
 
-		isRunning = true;
-		requestAnimationFrame(run);
-	};
+        isRunning = true;
+        requestAnimationFrame(run);
+    };
 };

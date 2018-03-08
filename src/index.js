@@ -1,12 +1,12 @@
 /* global window, document */
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {bindRaf} from './lib/bindRaf';
 import cx from 'classnames';
-import { bindRaf } from "./lib/bindRaf";
 
 class OnVisible extends Component {
-    constructor() {
-        super(...arguments);
+    constructor(...args) {
+        super(...args);
         this.onScroll = bindRaf(this.onScroll.bind(this));
         this.state = {
             visible: false,
@@ -35,8 +35,9 @@ class OnVisible extends Component {
         const end = () => {
             this.props.onChange(this.state.visible);
         };
+
         if (isVisible) {
-            this.setState( () => ({
+            this.setState(() => ({
                 visible: true,
                 top
             }), end);
@@ -54,26 +55,27 @@ class OnVisible extends Component {
         window.removeEventListener('resize', this.onScroll);
     }
     render() {
-        const { visible } = this.state;
+        const {visible} = this.state;
         const classes = cx(this.props.className, {
             [this.props.visibleClassName || 'visible']: visible
         });
 
-        return (
-          <div
-              style={this.props.style}
-              className={classes}
-              ref={el => { this.holder = el || this.holder; }}
-          >
-            {this.props.children}
-          </div>
-        );
+        const invokingProps = {
+            style: this.props.style,
+            className: classes,
+            ref: (el) => {
+                this.holder = el || this.holder;
+            }
+        };
+
+        return React.createElement(this.props.wrappingElement, invokingProps, this.props.children);
     }
 }
 
 OnVisible.defaultProps = {
-    onChange: () => {},
-    bounce: false
+    onChange: () => {}, // eslint-disable-line no-empty-function
+    bounce: false,
+    wrappingElement: 'div'
 };
 
 OnVisible.propTypes = {
@@ -83,13 +85,14 @@ OnVisible.propTypes = {
     children: PropTypes.node,
     percent: PropTypes.number,
     onChange: PropTypes.func,
-    bounce: PropTypes.bool
+    bounce: PropTypes.bool,
+    wrappingElement: PropTypes.string
 };
 
 export default OnVisible;
 
 export function setDefaultProps(props) {
-    Object.keys(props).forEach(k => {
-        OnVisible.defaultProps[k] = props[k];
+    Object.keys(props).forEach((key) => {
+        OnVisible.defaultProps[key] = props[key];
     });
 }

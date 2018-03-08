@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dazld/react-on-visible.svg?branch=master)](https://travis-ci.org/dazld/react-on-visible)
 [![npm version](https://badge.fury.io/js/react-on-visible.svg)](https://badge.fury.io/js/react-on-visible)
 # React OnVisible component
 
@@ -30,6 +31,10 @@ Callback when visibility changes. Argument is a boolean, `true` for visible, `fa
 ### `bounce` - boolean
 
 Whether visibility should be continuously calculated, or just until the element becomes visible. defaults to `false`. Go easy with this, don't expect amazing performance with many tens or hundreds of elements (`getBoundingClientRect`).
+
+### `wrappingElement` - string
+
+The string representation of the html element used to wrap children. Defaults to a `div`
 
 ### `setDefaultProps` - static function
 
