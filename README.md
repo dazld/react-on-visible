@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dazld/react-on-visible.svg?branch=master)](https://travis-ci.org/dazld/react-on-visible)
 [![npm version](https://badge.fury.io/js/react-on-visible.svg)](https://badge.fury.io/js/react-on-visible)
 # React OnVisible component
 
