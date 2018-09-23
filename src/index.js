@@ -37,6 +37,7 @@ class OnVisible extends Component {
         };
 
         const somethingChanged = this.state.visible !== visible;
+        const becameVisible = visible && !this.state.visible;
 
         if (somethingChanged) {
           this.setState(() => ({
@@ -45,10 +46,8 @@ class OnVisible extends Component {
           }), end);
         }
 
-        if (visible && !this.state.visible) {
-            if (!this.props.bounce) {
-                this.stopListening();
-            }
+        if (becameVisible && !this.props.bounce) {
+            this.stopListening();
         }
     }
     stopListening() {
