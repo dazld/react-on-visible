@@ -73,6 +73,10 @@ A further example is available in the `demo` folder of this project.
 
 ## Changelog
 
+### 1.5.1
+
+- Fixes `onChange` bug reported in https://github.com/dazld/react-on-visible/issues/27, and remove repeated invocation of onChange, only calling it when something actually changes.
+
 ### 1.5.0
 
 - Added an option to configure the wrappingElement, instead of using `div` always (thanks @TomiTakussaari - https://github.com/dazld/react-on-visible/issues/23)
