@@ -31,23 +31,23 @@ class OnVisible extends Component {
         const docTop = document.documentElement.clientTop || 0;
 
         const top = box.top + (box.height * visbleTriggerRatio) + (pageYOffset - docTop);
-        const isVisible = top < pos;
+        const visible = top < pos;
         const end = () => {
-            this.props.onChange(this.state.visible);
+            this.props.onChange(visible);
         };
 
-        if (isVisible) {
-            this.setState(() => ({
-                visible: true,
-                top
-            }), end);
-            if (!this.props.bounce) {
-                this.stopListening();
-            }
-        } else if (this.state.visible) {
-            this.setState(() => ({
-                visible: false
-            }), end);
+        const somethingChanged = this.state.visible !== visible;
+        const becameVisible = visible && !this.state.visible;
+
+        if (somethingChanged) {
+          this.setState(() => ({
+              visible,
+              top
+          }), end);
+        }
+
+        if (becameVisible && !this.props.bounce) {
+            this.stopListening();
         }
     }
     stopListening() {
