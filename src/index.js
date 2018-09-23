@@ -40,10 +40,10 @@ class OnVisible extends Component {
         const becameVisible = visible && !this.state.visible;
 
         if (somethingChanged) {
-          this.setState(() => ({
-              visible,
-              top
-          }), end);
+            this.setState(() => ({
+                visible,
+                top
+            }), end);
         }
 
         if (becameVisible && !this.props.bounce) {
