@@ -11,16 +11,19 @@ setDefaultProps({
 });
 
 class Colors extends Component {
-    constructor() {
-        super(...arguments);
+    constructor(...args) {
+        super(...args);
         this.renderItem = this.renderItem.bind(this);
         this.udpateVis = this.updateVis.bind(this);
-        const colors = new Array(NUM_ITEMS).fill('').map((i, idx) => {
-            return {
-                visible: false,
-                bg: `hsl(${(idx / NUM_ITEMS) * 360},100%,50%)`
-            };
-        });
+
+        const colors = new Array(NUM_ITEMS).fill('')
+            .map((_, idx) => {
+                return {
+                    visible: false,
+                    bg: `hsl(${(idx / NUM_ITEMS) * 360},100%,50%)`
+                };
+            });
+
         this.state = {
             colors,
             count: 0
@@ -28,18 +31,18 @@ class Colors extends Component {
     }
     updateVis(idx, visible) {
         setTimeout(() => {
-          const colors = this.state.colors;
-          colors[idx] = Object.assign(colors[idx], {visible});
+            const colors = this.state.colors;
 
-          this.setState({
-            colors
-          });
-        }, 1200)
+            colors[idx] = Object.assign(colors[idx], {visible});
+
+            this.setState({
+                colors
+            });
+        }, 1200);
     }
     renderItem(item, idx) {
-
         const col = this.state.colors[idx];
-        const msg = col.visible ? "done" : "fade";
+        const msg = col.visible ? 'done' : 'fade';
 
         return (
             <OnVisible

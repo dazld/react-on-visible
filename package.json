@@ -1,13 +1,13 @@
 {
     "name": "react-on-visible",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "description": "React component that applies a css class to the element when it becomes visible",
     "main": "build/index.js",
     "jsnext:main": "src/index.js",
     "scripts": {
         "test": "eslint src",
         "compile": "babel src --out-dir build",
-        "demo": "browserify demo/index.js -o demo/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+        "demo": "browserify demo/index.js -o demo/bundle.js -t [ babelify ]",
         "prepublish": "npm test && npm run compile"
     },
     "repository": {
@@ -33,9 +33,9 @@
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-es2015": "^6.9.0",
         "babel-preset-react": "^6.11.1",
-        "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babelify": "^7.3.0",
         "browserify": "^13.1.0",
         "eslint": "^4.18.1",
@@ -43,7 +43,7 @@
         "eslint-plugin-import": "^1.14.0",
         "eslint-plugin-jsx-a11y": "^2.2.1",
         "eslint-plugin-react": "^6.2.0",
-        "react": "^16.0.0",
+        "react": "^16.6.3",
         "react-dom": "^16.1.1"
     }
 }

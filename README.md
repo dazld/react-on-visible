@@ -8,7 +8,7 @@ Live example: https://dazld.github.io/react-on-visible/demo/
 
 ## Description
 
-This is a higher order react component that applies the css class `visible` to the container when the element becomes more than 50% visible in the browser viewport.
+This is a component that applies the css class `visible` to the container when the element becomes by default more than 50% visible in the browser viewport.
 
 It only attaches to browser events on the client, so is also safe to use for server rendering.
 
@@ -72,6 +72,10 @@ export default function someComponent(props) {
 A further example is available in the `demo` folder of this project.
 
 ## Changelog
+
+### 1.6.0
+
+- Fixes Take element attributes from passed rest properties on `OnVisible` (https://github.com/dazld/react-on-visible/issues/29) (Thanks @Vovan-VE)
 
 ### 1.5.1
 
