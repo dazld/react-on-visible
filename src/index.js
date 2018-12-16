@@ -55,20 +55,26 @@ class OnVisible extends Component {
         window.removeEventListener('resize', this.onScroll);
     }
     render() {
+        const {className, visibleClassName, children, wrappingElement, ...attributes} = this.props;
         const {visible} = this.state;
-        const classes = cx(this.props.className, {
-            [this.props.visibleClassName || 'visible']: visible
+        const classes = cx(className, {
+            [visibleClassName || 'visible']: visible
         });
 
+        // other known properties which must not be passed to attributes
+        delete attributes.percent;
+        delete attributes.onChange;
+        delete attributes.bounce;
+
         const invokingProps = {
-            style: this.props.style,
+            ...attributes,
             className: classes,
             ref: (el) => {
                 this.holder = el || this.holder;
             }
         };
 
-        return React.createElement(this.props.wrappingElement, invokingProps, this.props.children);
+        return React.createElement(wrappingElement, invokingProps, children);
     }
 }
 
