@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 interface IOnVisibleProps {
     className?: string;
     style?: React.StyleHTMLAttributes<HTMLDivElement>
