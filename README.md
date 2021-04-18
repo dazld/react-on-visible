@@ -1,3 +1,10 @@
+> **ARCHIVED**
+> This module is no longer maintained. 
+> Much of this behaviour can now be more easily and efficiently achieved with an [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), making this component somewhat redundant.
+> Thanks to all contributors and users out in the wild!
+> April 2021
+
+
 [![Build Status](https://travis-ci.org/dazld/react-on-visible.svg?branch=master)](https://travis-ci.org/dazld/react-on-visible)
 [![npm version](https://badge.fury.io/js/react-on-visible.svg)](https://badge.fury.io/js/react-on-visible)
 # React OnVisible component
